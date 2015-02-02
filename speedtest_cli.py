@@ -333,17 +333,11 @@ def getConfig():
         try:
             root = ET.fromstring(''.encode().join(configxml))
             config = {
-                'client': root.find('client').attrib,
-                'times': root.find('times').attrib,
-                'download': root.find('download').attrib,
-                'upload': root.find('upload').attrib}
+                'client': root.find('client').attrib}
         except AttributeError:
             root = DOM.parseString(''.join(configxml))
             config = {
-                'client': getAttributesByTagName(root, 'client'),
-                'times': getAttributesByTagName(root, 'times'),
-                'download': getAttributesByTagName(root, 'download'),
-                'upload': getAttributesByTagName(root, 'upload')}
+                'client': getAttributesByTagName(root, 'client')}
     except SyntaxError:
         print_('Failed to parse speedtest.net configuration')
         sys.exit(1)
